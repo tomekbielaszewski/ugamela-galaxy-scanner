@@ -54,30 +54,36 @@
     }
 
     function savePlanet(galaxy, system, planetNumber, planetRow) {
-      let playerName = getPlanetOwner(planetRow);
-      let playerActivity = getPlayerActivity(planetRow);
-      let hasMoon = getMoon(planetRow);
-      let debrisFieldType = getDebrisType(planetRow);
-      let playerRank = getPlayerRank(planetRow);
-      let alliance = getAlliance(planetRow);
-      let rawHTML = planetRow.html();
+      if(planetExist(planetRow)) {
+        let playerName = getPlanetOwner(planetRow);
+        let playerActivity = getPlayerActivity(planetRow);
+        let hasMoon = getMoon(planetRow);
+        let debrisFieldType = getDebrisType(planetRow);
+        let playerRank = getPlayerRank(planetRow);
+        let alliance = getAlliance(planetRow);
+        let rawHTML = planetRow.html();
 
-      let scannerData = GM_getValue(SCANNER_DATA, {});
-      let planetData = {
-        galaxy,
-        system,
-        planetNumber,
-        playerName,
-        hasMoon,
-        debrisFieldType,
-        playerRank,
-        alliance,
-        playerActivity,
-        rawHTML
-      };
-      console.log(planetData);
-      scannerData[planetID(galaxy, system, planetNumber)] = planetData;
-      GM_setValue(SCANNER_DATA, scannerData);
+        let scannerData = GM_getValue(SCANNER_DATA, {});
+        let planetData = {
+          galaxy,
+          system,
+          planetNumber,
+          playerName,
+          hasMoon,
+          debrisFieldType,
+          playerRank,
+          alliance,
+          playerActivity,
+          rawHTML
+        };
+        console.log(planetData);
+        scannerData[planetID(galaxy, system, planetNumber)] = planetData;
+        GM_setValue(SCANNER_DATA, scannerData);
+      }
+    }
+
+    function planetExist(planetRow) {
+      return planetRow.find('th:eq(2) > a').length > 0;;
     }
 
     function getPlanetOwner(planetRow) {
