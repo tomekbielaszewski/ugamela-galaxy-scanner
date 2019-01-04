@@ -63,7 +63,6 @@
         let alliance = getAlliance(planetRow);
         let rawHTML = planetRow.html();
 
-        let scannerData = GM_getValue(SCANNER_DATA, {});
         let planetData = {
           galaxy,
           system,
@@ -77,8 +76,8 @@
           rawHTML
         };
         console.log(planetData);
-        scannerData[planetID(galaxy, system, planetNumber)] = planetData;
-        GM_setValue(SCANNER_DATA, scannerData);
+
+        saveScannerData(galaxy, system, planetNumber, planetData);
       }
     }
 
@@ -126,6 +125,12 @@
 
     function getAlliance(planetRow) {
       return planetRow.find('th:eq(7)').text().trim();
+    }
+
+    function saveScannerData(galaxy, system, planetNumber, planetData) {
+      let scannerData = GM_getValue(SCANNER_DATA, {});
+      scannerData[planetID(galaxy, system, planetNumber)] = planetData;
+      GM_setValue(SCANNER_DATA, scannerData);
     }
   })();
 })();
