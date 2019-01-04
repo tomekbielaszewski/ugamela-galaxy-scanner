@@ -3,7 +3,7 @@
 Skrypt instalowany jako Userscript. Dodaje dodatkowe funkcjonalności do podglądu galaktyki.
 
 ## Funkcjonalności
- - [ ] Zapisywanie widzianych wcześniej stron układu
+ - [x] Zapisywanie widzianych wcześniej stron układu
  - [ ] Automatyczne przechodzenie przez całe galaktyki w celu zapisania układu planet
  
  
