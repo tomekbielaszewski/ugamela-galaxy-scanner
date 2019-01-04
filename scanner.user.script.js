@@ -49,7 +49,7 @@
 
     function saveSystem(galaxy, system, planets) {
       $(planets).each(function (planetNumber) {
-        savePlanet(galaxy, system, planetNumber, $(this).wrap('<tr></tr>'));
+        savePlanet(galaxy, system, ++planetNumber, $(this).wrap('<tr></tr>'));
       });
     }
 
