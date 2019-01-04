@@ -96,7 +96,7 @@
     }
 
     function getMoon(planetRow) {
-      return planetRow.find('th:eq(3) > a').length >= 0;
+      return planetRow.find('th:eq(3) > a').length > 0;
     }
 
     function getDebrisType(planetRow) {
