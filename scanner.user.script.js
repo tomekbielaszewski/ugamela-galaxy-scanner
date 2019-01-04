@@ -16,6 +16,15 @@
   const SCANNER_UI = 'scanner-ui';
   const SCANNER_DATA = 'scannerData';
 
+  const PLAYER_ACTIVE = 'active';
+  const PLAYER_INACTIVE = 'inactive';
+  const PLAYER_LONGINACTIVE = 'longinactive';
+
+  const DEBRIS_NONE = 'none';
+  const DEBRIS_GREEN = 'green';
+  const DEBRIS_ORANGE = 'orange';
+  const DEBRIS_RED = 'red';
+
   function planetID(galaxy, system, planet) {
     return `${galaxy}:${system}:${planet}`
   }
@@ -39,23 +48,22 @@
     }
 
     function saveSystem(galaxy, system, planets) {
-      $(planets).each(function () {
-        savePlanet(galaxy, system, $(this));
+      $(planets).each(function (planetNumber) {
+        savePlanet(galaxy, system, planetNumber, $(this).wrap('<tr></tr>'));
       });
     }
 
-    function savePlanet(galaxy, system, planetRow) {
-      let planetNumber = getPlanetNumber(planetRow);
+    function savePlanet(galaxy, system, planetNumber, planetRow) {
       let playerName = getPlanetOwner(planetRow);
       let playerActivity = getPlayerActivity(planetRow);
       let hasMoon = getMoon(planetRow);
-      let debrisFieldType = getDebrisFieldType(planetRow);
+      let debrisFieldType = getDebrisType(planetRow);
       let playerRank = getPlayerRank(planetRow);
       let alliance = getAlliance(planetRow);
       let rawHTML = planetRow.html();
 
       let scannerData = GM_getValue(SCANNER_DATA, {});
-      scannerData[planetID(galaxy, system, planetNumber)] = {
+      let planetData = {
         galaxy,
         system,
         planetNumber,
@@ -67,35 +75,51 @@
         playerActivity,
         rawHTML
       };
+      console.log(planetData);
+      scannerData[planetID(galaxy, system, planetNumber)] = planetData;
       GM_setValue(SCANNER_DATA, scannerData);
     }
 
-    function getPlanetNumber(planetRow) {
-      return undefined;
-    }
-
     function getPlanetOwner(planetRow) {
-      return undefined;
+      return planetRow.find('th:eq(5) > a > b').text().trim();
     }
 
     function getPlayerActivity(planetRow) {
-      return undefined;
+      let status = PLAYER_ACTIVE;
+      let playerDiv = planetRow.find('th:eq(5) > a > b');
+      if (playerDiv.hasClass('inactive')) {
+        status = PLAYER_INACTIVE;
+      } else if (playerDiv.hasClass('longinactive')) {
+        status = PLAYER_LONGINACTIVE;
+      }
+      return status;
     }
 
     function getMoon(planetRow) {
-      return undefined;
+      return planetRow.find('th:eq(3) > a').length >= 0;
     }
 
-    function getDebrisFieldType(planetRow) {
-      return undefined;
+    function getDebrisType(planetRow) {
+      let debrisType = DEBRIS_NONE;
+      let debrisDiv = planetRow.find('th:eq(4)');
+
+      if (debrisDiv.hasClass('bgSmall')) {
+        debrisType = DEBRIS_GREEN;
+      } else if (debrisDiv.hasClass('bgMed')) {
+        debrisType = DEBRIS_ORANGE;
+      } else if (debrisDiv.hasClass('bgBig')) {
+        debrisType = DEBRIS_RED;
+      }
+
+      return debrisType;
     }
 
     function getPlayerRank(planetRow) {
-      return undefined;
+      return planetRow.find('th:eq(6)').text().trim();
     }
 
     function getAlliance(planetRow) {
-      return undefined;
+      return planetRow.find('th:eq(7)').text().trim();
     }
   })();
 })();
