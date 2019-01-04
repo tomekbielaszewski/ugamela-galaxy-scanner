@@ -75,7 +75,6 @@
           playerActivity,
           rawHTML
         };
-        console.log(planetData);
 
         saveScannerData(galaxy, system, planetNumber, planetData);
       }
