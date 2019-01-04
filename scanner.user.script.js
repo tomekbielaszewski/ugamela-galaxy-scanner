@@ -14,6 +14,7 @@
 (function () {
   'use strict';
   const SCANNER_UI = 'scanner-ui';
+  const SCANNER_DATA = 'scannerData';
 
   function planetID(galaxy, system, planet) {
     return `${galaxy}:${system}:${planet}`
@@ -39,7 +40,7 @@
 
     function saveSystem(galaxy, system, planets) {
       $(planets).each(function () {
-        savePlanet(galaxy, system, this);
+        savePlanet(galaxy, system, $(this));
       });
     }
 
@@ -47,7 +48,7 @@
       let planetNumber = getPlanetNumber(planetRow);
       let playerName = getPlanetOwner(planetRow);
       let playerActivity = getPlayerActivity(planetRow);
-      let hasMoon = hasMoon(planetRow);
+      let hasMoon = getMoon(planetRow);
       let debrisFieldType = getDebrisFieldType(planetRow);
       let playerRank = getPlayerRank(planetRow);
       let alliance = getAlliance(planetRow);
@@ -81,7 +82,7 @@
       return undefined;
     }
 
-    function hasMoon(planetRow) {
+    function getMoon(planetRow) {
       return undefined;
     }
 
