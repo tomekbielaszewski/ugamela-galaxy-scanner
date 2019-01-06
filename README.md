@@ -1,6 +1,6 @@
 # Ugamela Galaxy scanner
 
-Skrypt instalowany jako Userscript. Dodaje dodatkowe funkcjonalności do podglądu galaktyki.
+Skrypt instalowany przez Tampermonkey/Greasemonkey.
 
 ## Funkcjonalności
  - [x] Zapisywanie widzianych wcześniej stron układu
@@ -13,3 +13,7 @@ Skrypt instalowany jako Userscript. Dodaje dodatkowe funkcjonalności do podglą
  - [ ] Wyszukiwarka graczy na podstawie rankingu
  - [ ] Wyszukiwarka graczy na podstawie odległości
  - [x] Wyszukiwarka Pól zniszczeń
+ 
+## Wygląd
+
+![ugamela_galaxy_scanner_screenshot](./ugamela_galaxy_scanner_screenshot.PNG)
