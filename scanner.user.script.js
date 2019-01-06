@@ -34,6 +34,7 @@ let GS = (function () {
   function init() {
     loadUI();
     attachAjaxListener();
+    attachControls();
 
     function loadUI() {
       $('#gameContent > center > table').append($(GM_getResourceText(SCANNER_UI)))
@@ -48,6 +49,10 @@ let GS = (function () {
           console.log(Date.now() - start)
         }
       });
+    }
+
+    function attachControls() {
+      $('#GS_logBtn').onclick(log);
     }
 
     function saveSystem(galaxy, system, planets) {
