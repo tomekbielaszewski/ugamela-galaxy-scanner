@@ -129,7 +129,7 @@
       result = result && data.hasMoon;
     }
 
-    let topRank = $('#GS_moon_filter').val();
+    let topRank = $('#GS_ranking').val();
     if (topRank < 1000) {
       result = result && (data.playerRank <= topRank && data.playerRank < topRank-100);
     }
