@@ -13,6 +13,7 @@ Skrypt instalowany przez Tampermonkey/Greasemonkey.
  - [ ] Wyszukiwarka graczy na podstawie rankingu
  - [ ] Wyszukiwarka graczy na podstawie odległości
  - [x] Wyszukiwarka Pól zniszczeń
+ - [x] Wyszukiwarka księżyców
  
 ## Wygląd
 
