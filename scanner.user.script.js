@@ -120,6 +120,10 @@
       result = result && data.hasMoon;
     }
 
+    if (!(playerSearch || allianceSearch || longinactive || inactive || active || debrisHigh || debrisMed || debrisLow || hasMoon)) {
+      result = false;
+    }
+
     return result
   }
 
