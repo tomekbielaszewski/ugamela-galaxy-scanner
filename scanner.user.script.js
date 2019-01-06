@@ -25,9 +25,7 @@
   const DEBRIS_ORANGE = 'orange';
   const DEBRIS_RED = 'red';
 
-  function refreshResult() {
-    console.log('dupa');
-  }
+  let scannerData = GM_getValue(SCANNER_DATA, {});
 
   loadUI();
   attachAjaxListener();
@@ -55,8 +53,70 @@
     $('#GS_inactive_filter').change(refreshResult);
     $('#GS_active_filter').change(refreshResult);
     $('#GS_debris_low_filter').change(refreshResult);
+    $('#GS_debris_med_filter').change(refreshResult);
     $('#GS_debris_high_filter').change(refreshResult);
     $('#GS_moon_filter').change(refreshResult);
+    $('#GS_reset').click(reset);
+  }
+
+  function reset() {
+    scannerData = {};
+    saveScannerData([]);
+  }
+
+  function refreshResult() {
+    let filteredScanner = Object.entries(scannerData)
+      .filter(scannerFilter);
+    refreshUI(filteredScanner);
+  }
+
+  function scannerFilter(data) {
+    let result = true;
+
+    let playerSearch = $('#GS_player_search_input').val();
+    if (playerSearch) {
+      result = result && data.playerName.includes(playerSearch);
+    }
+
+    let allianceSearch = $('#GS_alliance_search_input').val();
+    if (allianceSearch) {
+      result = result && data.alliance.includes(allianceSearch);
+    }
+
+    let longinactive = $('#GS_longinactive_filter').is(":checked");
+    let inactive = $('#GS_inactive_filter').is(":checked");
+    let active = $('#GS_active_filter').is(":checked");
+    if (longinactive || inactive || active) {
+      result = result && (
+        longinactive && (data.playerActivity === PLAYER_LONGINACTIVE) ||
+        inactive && (data.playerActivity === PLAYER_INACTIVE) ||
+        active && (data.playerActivity === PLAYER_ACTIVE)
+      );
+    }
+
+    let debrisHigh = $('#GS_debris_high_filter').is(":checked");
+    let debrisMed = $('#GS_debris_med_filter').is(":checked");
+    let debrisLow = $('#GS_debris_low_filter').is(":checked");
+    if (debrisHigh || debrisMed || debrisLow) {
+      result = result && (data.debrisFieldType !== DEBRIS_NONE) && (
+        debrisHigh && (data.debrisFieldType === DEBRIS_RED) ||
+        debrisMed && (data.debrisFieldType === DEBRIS_ORANGE) ||
+        debrisLow && (data.debrisFieldType === DEBRIS_GREEN)
+      );
+    }
+
+    let hasMoon = $('#GS_moon_filter').is(":checked");
+    if (hasMoon) {
+      result = result && data.hasMoon;
+    }
+
+    return result
+  }
+
+  function refreshUI(filteredScanner) {
+    debugger;
+    $('#galRows_scanner').empty();
+    $('#galRows_scanner').append($(filteredScanner.rawHTML));
   }
 
   function saveSystem(galaxy, system, planets) {
@@ -145,7 +205,6 @@
   }
 
   function saveScannerData(systemData) {
-    let scannerData = GM_getValue(SCANNER_DATA, {});
     systemData.forEach(function (planet) {
       scannerData[planetID(planet.galaxy, planet.system, planet.planetNumber)] = planet;
     });
