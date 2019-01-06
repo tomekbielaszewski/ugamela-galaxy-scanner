@@ -75,12 +75,12 @@
 
     let playerSearch = $('#GS_player_search_input').val();
     if (playerSearch) {
-      result = result && data.playerName.includes(playerSearch);
+      result = result && data.playerName.indexOf(playerSearch) !== -1;
     }
 
     let allianceSearch = $('#GS_alliance_search_input').val();
     if (allianceSearch) {
-      result = result && data.alliance.includes(allianceSearch);
+      result = result && data.alliance.indexOf(allianceSearch) !== -1;
     }
 
     let longinactive = $('#GS_longinactive_filter').is(":checked");
@@ -114,7 +114,6 @@
   }
 
   function refreshUI(filteredScanner) {
-    debugger;
     $('#galRows_scanner').empty();
     $('#galRows_scanner').append($(filteredScanner.rawHTML));
   }
