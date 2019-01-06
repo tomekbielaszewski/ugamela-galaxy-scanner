@@ -8,29 +8,90 @@
     </td>
 </tr>
 <tr>
-    <th class="pad5" colspan="10">
-        <select name="type" style="padding: 3px;">
-            <option value="playername">Nazwa gracza</option>
-            <option value="alliance">Nazwa sojuszu</option>
-        </select>
-        &nbsp;&nbsp;
-        <input type="text" name="searchtext" style="width: 150px; padding: 3px;" value="">
-        &nbsp;&nbsp;
-        <input type="button" style="padding: 3px; font-weight: 700; width: 100px;" value="Szukaj">
-        <br>
-        <br>
-        <input id="GS_logBtn" type="button" style="padding: 3px; font-weight: 700; width: 200px;" value="log">
-        <br>
-        <br>
-        <input type="button" style="padding: 3px; font-weight: 700; width: 200px;" value="Szukaj dobrych farm">
-        <br>
-        <br>
-        <input type="button" style="padding: 3px; font-weight: 700; width: 170px;" value="Szukaj czerwonych PZ">
-        &nbsp;&nbsp;
-        <input type="button" style="padding: 3px; font-weight: 700; width: 170px;" value="Szukaj pomarańczowych PZ">
-        &nbsp;&nbsp;
-        <input type="button" style="padding: 3px; font-weight: 700; width: 170px;" value="Szukaj zielonych PZ">
-    </th>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_player_search_input" class="mTxt">Nick</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_player_search_input" type="text" style="width: 150px; padding: 3px;" value="">
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_alliance_search_input" class="mTxt">Sojusz</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_alliance_search_input" type="text" style="width: 150px; padding: 3px;" value="">
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_longinactive_filter" class="mTxt">Długo nieaktywni gracze (>7d)</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_longinactive_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 200px;" >
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_inactive_filter" class="mTxt">Nieaktywni gracze (>3d)</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_inactive_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 200px;">
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_active_filter" class="mTxt">Aktywni gracze</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_active_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 200px;" >
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_debris_high_filter" class="mTxt">Czerwone PZ</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_debris_high_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 170px;" >
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_debris_med_filter" class="mTxt">Pomarańczowe PZ</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_debris_med_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 170px;" >
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_debris_low_filter" class="mTxt">Zielone PZ</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_debris_low_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 170px;" >
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_debris_any_filter" class="mTxt">Posiada jakiekolwiek PZ</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_debris_any_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 170px;" >
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="5">
+        <label for="GS_moon_filter" class="mTxt">Posiada księżyc</label>
+    </td>
+    <td class="c center pad5" colspan="5">
+        <input id="GS_moon_filter" type="checkbox" style="padding: 3px; font-weight: 700; width: 170px;" value="Czerwone PZ">
+    </td>
+</tr>
+<tr>
+    <td class="c center pad5" colspan="10">
+        <label class="mTxt">TODO: Ranking: Top 1, Top 100, Top 500 etc</label>
+        <label class="mTxt">TODO: Zasięg: 20 systemów</label>
+    </td>
 </tr>
 </tbody>
 <tbody>
@@ -44,9 +105,6 @@
     <td class="c center" width="20" title="Pozycja w Statystykach">#</td>
     <td class="c center" width="80">Sojusz</td>
     <td class="c center" width="65">Akcje</td>
-</tr>
-<tr style="display: none;" id="fleetstatusrow">
-    <th class="c pad5" colspan="10" id="ajaxInfoBox"></th>
 </tr>
 </tbody>
 <tbody id="galRows">
