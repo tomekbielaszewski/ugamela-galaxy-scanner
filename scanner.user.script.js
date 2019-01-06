@@ -25,7 +25,7 @@
   const DEBRIS_ORANGE = 'orange';
   const DEBRIS_RED = 'red';
 
-  function log() {
+  function refreshResult() {
     console.log('dupa');
   }
 
@@ -49,7 +49,14 @@
   }
 
   function attachControls() {
-    $('#GS_logBtn').click(log);
+    $('#GS_player_search_input').change(refreshResult);
+    $('#GS_alliance_search_input').change(refreshResult);
+    $('#GS_longinactive_filter').change(refreshResult);
+    $('#GS_inactive_filter').change(refreshResult);
+    $('#GS_active_filter').change(refreshResult);
+    $('#GS_debris_low_filter').change(refreshResult);
+    $('#GS_debris_high_filter').change(refreshResult);
+    $('#GS_moon_filter').change(refreshResult);
   }
 
   function saveSystem(galaxy, system, planets) {
