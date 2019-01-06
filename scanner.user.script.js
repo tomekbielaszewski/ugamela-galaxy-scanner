@@ -42,6 +42,10 @@
         let response = JSON.parse(xhr.responseText);
         saveSystem(response.G, response.S, response.Data);
         console.log(Date.now() - start)
+
+        if($('#GS_player_search_input').is(":checked")) {
+          $('#galaxy_form > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > th:nth-child(3) > input').click();
+        }
       }
     });
   }
