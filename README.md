@@ -7,7 +7,9 @@ Skrypt instalowany jako Userscript. Dodaje dodatkowe funkcjonalności do podglą
  - [ ] Automatyczne przechodzenie przez całe galaktyki w celu zapisania układu planet
  
  
- - [ ] Wyszukiwarka planet danego gracza
- - [ ] Wyszukiwarka planet danego sojuszu
- - [ ] Wyszukiwarka potencjalnych farm - mocni, nieaktywni gracze
- - [ ] Wyszukiwarka Pól zniszczeń
+ - [x] Wyszukiwarka planet danego gracza
+ - [x] Wyszukiwarka planet danego sojuszu
+ - [x] Wyszukiwarka graczy na podstawie aktywności
+ - [ ] Wyszukiwarka graczy na podstawie rankingu
+ - [ ] Wyszukiwarka graczy na podstawie odległości
+ - [x] Wyszukiwarka Pól zniszczeń
