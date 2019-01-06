@@ -70,6 +70,7 @@
     $('#GS_debris_med_filter').change(refreshResult);
     $('#GS_debris_high_filter').change(refreshResult);
     $('#GS_moon_filter').change(refreshResult);
+    $('#GS_ranking').change(refreshResult);
     $('#GS_auto').change(showNextSystem);
     $('#GS_reset').click(reset);
   }
@@ -128,7 +129,12 @@
       result = result && data.hasMoon;
     }
 
-    if (!(playerSearch || allianceSearch || longinactive || inactive || active || debrisHigh || debrisMed || debrisLow || hasMoon)) {
+    let topRank = $('#GS_moon_filter').val();
+    if (topRank < 1000) {
+      result = result && (data.playerRank <= topRank && data.playerRank < topRank-100);
+    }
+
+    if (!(playerSearch || allianceSearch || longinactive || inactive || active || debrisHigh || debrisMed || debrisLow || hasMoon || topRank < 1000)) {
       result = false;
     }
 
