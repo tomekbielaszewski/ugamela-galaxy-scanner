@@ -11,9 +11,13 @@ Skrypt instalowany przez Tampermonkey/Greasemonkey.
  - [x] Wyszukiwarka planet danego sojuszu
  - [x] Wyszukiwarka graczy na podstawie aktywności
  - [x] Wyszukiwarka graczy na podstawie rankingu
- - [ ] Wyszukiwarka graczy na podstawie odległości
  - [x] Wyszukiwarka Pól zniszczeń
  - [x] Wyszukiwarka księżyców
+ - [ ] Wyszukiwarka graczy na podstawie odległości
+ 
+ - [ ] Data zapisania danych o planecie
+ - [ ] Kolorowanie daty aktualizacji w zależności od wieku
+ - [ ] Wyświetlanie relatywnej daty (10 min ago, 1 day ago etc)
  
 ## Wygląd
 
