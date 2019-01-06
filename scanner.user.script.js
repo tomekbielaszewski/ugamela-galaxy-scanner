@@ -41,20 +41,29 @@
     function attachAjaxListener() {
       $(document).ajaxComplete(function (event, xhr, settings) {
         if (settings.url.startsWith('ajax/galaxy.php') && xhr.status === 200) {
+          let start = Date.now();
           let response = JSON.parse(xhr.responseText);
           saveSystem(response.G, response.S, response.Data);
+          console.log(Date.now() - start)
         }
       });
     }
 
     function saveSystem(galaxy, system, planets) {
+      let systemData = [];
       $(planets).each(function (planetNumber) {
-        savePlanet(galaxy, system, ++planetNumber, $(this).wrap('<tr></tr>'));
+        planetNumber += 1;
+        let planetData = parsPlanet(galaxy, system, planetNumber, $(this).wrap('<tr></tr>'));
+        if (planetData) {
+          systemData.push(planetData);
+        }
       });
+
+      saveScannerData(systemData);
     }
 
-    function savePlanet(galaxy, system, planetNumber, planetRow) {
-      if(planetExist(planetRow)) {
+    function parsPlanet(galaxy, system, planetNumber, planetRow) {
+      if (planetExist(planetRow)) {
         let playerName = getPlanetOwner(planetRow);
         let playerActivity = getPlayerActivity(planetRow);
         let hasMoon = getMoon(planetRow);
@@ -63,7 +72,7 @@
         let alliance = getAlliance(planetRow);
         let rawHTML = planetRow.html();
 
-        let planetData = {
+        return {
           galaxy,
           system,
           planetNumber,
@@ -75,13 +84,12 @@
           playerActivity,
           rawHTML
         };
-
-        saveScannerData(galaxy, system, planetNumber, planetData);
       }
     }
 
     function planetExist(planetRow) {
-      return planetRow.find('th:eq(2) > a').length > 0;;
+      return planetRow.find('th:eq(2) > a').length > 0;
+      ;
     }
 
     function getPlanetOwner(planetRow) {
@@ -126,9 +134,11 @@
       return planetRow.find('th:eq(7)').text().trim();
     }
 
-    function saveScannerData(galaxy, system, planetNumber, planetData) {
+    function saveScannerData(systemData) {
       let scannerData = GM_getValue(SCANNER_DATA, {});
-      scannerData[planetID(galaxy, system, planetNumber)] = planetData;
+      systemData.forEach(function (planet) {
+        scannerData[planetID(planet.galaxy, planet.system, planet.planetNumber)] = planet;
+      });
       GM_setValue(SCANNER_DATA, scannerData);
     }
   })();
