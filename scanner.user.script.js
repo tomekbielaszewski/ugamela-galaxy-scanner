@@ -66,6 +66,7 @@
 
   function refreshResult() {
     let filteredScanner = Object.entries(scannerData)
+      .map(entry => entry[1])
       .filter(scannerFilter);
     refreshUI(filteredScanner);
   }
