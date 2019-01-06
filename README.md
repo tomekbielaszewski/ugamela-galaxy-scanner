@@ -4,7 +4,7 @@ Skrypt instalowany jako Userscript. Dodaje dodatkowe funkcjonalności do podglą
 
 ## Funkcjonalności
  - [x] Zapisywanie widzianych wcześniej stron układu
- - [ ] Automatyczne przechodzenie przez całe galaktyki w celu zapisania układu planet
+ - [x] Automatyczne przechodzenie przez całe galaktyki w celu zapisania układu planet
  
  
  - [x] Wyszukiwarka planet danego gracza
