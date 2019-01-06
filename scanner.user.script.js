@@ -75,8 +75,10 @@
   }
 
   function reset() {
-    scannerData = {};
-    saveScannerData([]);
+    if (confirm('Jesteś pewien, że chcesz wyczyścić wszystkie dane?')) {
+      scannerData = {};
+      saveScannerData([]);
+    }
   }
 
   function refreshResult() {
