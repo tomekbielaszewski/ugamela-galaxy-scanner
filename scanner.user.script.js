@@ -116,14 +116,18 @@
 
   function refreshUI(filteredScanner) {
     $('#galRows_scanner').empty();
-    $('#galRows_scanner').append($(filteredScanner.rawHTML));
+    filteredScanner.forEach(function (data) {
+      let uiResultRow = $(data.rawHTML);
+      uiResultRow.find('th:eq(0) > a').text(planetID(data.galaxy, data.system, data.planetNumber));
+      $('#galRows_scanner').append(uiResultRow);
+    })
   }
 
   function saveSystem(galaxy, system, planets) {
     let systemData = [];
     $(planets).each(function (planetNumber) {
       planetNumber += 1;
-      let planetData = parsPlanet(galaxy, system, planetNumber, $(this).wrap('<tr></tr>'));
+      let planetData = parsPlanet(galaxy, system, planetNumber, $(this));
       if (planetData) {
         systemData.push(planetData);
       }
@@ -141,6 +145,7 @@
       let playerRank = getPlayerRank(planetRow);
       let alliance = getAlliance(planetRow);
       let rawHTML = planetRow.html();
+      rawHTML = `<tr>${rawHTML}</tr>`;
 
       return {
         galaxy,
@@ -158,8 +163,7 @@
   }
 
   function planetExist(planetRow) {
-    return planetRow.find('th:eq(2) > a').length > 0;
-    ;
+    return planetRow.find('th:eq(1) > a').length > 0;
   }
 
   function getPlanetOwner(planetRow) {
