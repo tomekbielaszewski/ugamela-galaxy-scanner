@@ -10,7 +10,7 @@ Skrypt instalowany przez Tampermonkey/Greasemonkey.
  - [x] Wyszukiwarka planet danego gracza
  - [x] Wyszukiwarka planet danego sojuszu
  - [x] Wyszukiwarka graczy na podstawie aktywności
- - [ ] Wyszukiwarka graczy na podstawie rankingu
+ - [x] Wyszukiwarka graczy na podstawie rankingu
  - [ ] Wyszukiwarka graczy na podstawie odległości
  - [x] Wyszukiwarka Pól zniszczeń
  - [x] Wyszukiwarka księżyców
