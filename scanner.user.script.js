@@ -146,6 +146,8 @@
     filteredScanner.forEach(function (data) {
       let uiResultRow = $(data.rawHTML);
       uiResultRow.find('th:eq(0) > a').text(planetID(data.galaxy, data.system, data.planetNumber));
+      uiResultRow.find('th:eq(0) > a')
+        .attr("href", `https://www.ugamela.pl/s1/galaxy.php?mode=3&galaxy=${data.galaxy}&system=${data.system}`)
       $('#galRows_scanner').append(uiResultRow);
     })
   }
