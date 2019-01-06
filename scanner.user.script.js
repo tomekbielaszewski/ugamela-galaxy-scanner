@@ -35,10 +35,12 @@
     $('#gameContent > center > table').append($(GM_getResourceText(SCANNER_UI)))
   }
 
+  function isAutoScanSelected() {
+    return $('#GS_auto').is(":checked");
+  }
+
   function showNextSystem() {
-    if ($('#GS_auto').is(":checked")) {
-      $('#galaxy_form > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > th:nth-child(3) > input').click();
-    }
+    $('#galaxy_form > table > tbody > tr:nth-child(1) > td:nth-child(2) > table > tbody > tr:nth-child(2) > th:nth-child(3) > input').click();
   }
 
   function attachAjaxListener() {
@@ -46,10 +48,14 @@
       if (settings.url.startsWith('ajax/galaxy.php') && xhr.status === 200) {
         let start = Date.now();
         let response = JSON.parse(xhr.responseText);
-        saveSystem(response.G, response.S, response.Data);
-        console.log(Date.now() - start)
 
-        showNextSystem();
+        let autoScanSelected = isAutoScanSelected();
+        saveSystem(response.G, response.S, response.Data, autoScanSelected);
+        console.log(Date.now() - start);
+
+        if (autoScanSelected) {
+          showNextSystem();
+        }
       }
     });
   }
@@ -136,7 +142,7 @@
     })
   }
 
-  function saveSystem(galaxy, system, planets) {
+  function saveSystem(galaxy, system, planets, skipSavingInStorage) {
     let systemData = [];
     $(planets).each(function (planetNumber) {
       planetNumber += 1;
@@ -146,7 +152,9 @@
       }
     });
 
-    saveScannerData(systemData);
+    if (!skipSavingInStorage) {
+      saveScannerData(systemData);
+    }
   }
 
   function parsPlanet(galaxy, system, planetNumber, planetRow) {
