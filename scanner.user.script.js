@@ -11,7 +11,7 @@
 // @grant        GM_setValue
 // ==/UserScript==
 
-(function () {
+let GS = (function () {
   'use strict';
   const SCANNER_UI = 'scanner-ui';
   const SCANNER_DATA = 'scannerData';
@@ -25,12 +25,13 @@
   const DEBRIS_ORANGE = 'orange';
   const DEBRIS_RED = 'red';
 
-  function planetID(galaxy, system, planet) {
-    return `${galaxy}:${system}:${planet}`
+  init();
+
+  function log(text) {
+    console.log(text);
   }
 
-
-  (function () {
+  function init() {
     loadUI();
     attachAjaxListener();
 
@@ -141,5 +142,11 @@
       });
       GM_setValue(SCANNER_DATA, scannerData);
     }
-  })();
+
+    function planetID(galaxy, system, planet) {
+      return `${galaxy}:${system}:${planet}`
+    }
+  };
+
+  return {log}
 })();
