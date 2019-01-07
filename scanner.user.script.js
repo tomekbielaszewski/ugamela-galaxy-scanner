@@ -165,9 +165,7 @@
       }
     });
 
-    if (!skipSavingInStorage) {
-      saveScannerData(systemData);
-    }
+    saveScannerData(systemData, skipSavingInStorage);
   }
 
   function parsPlanet(galaxy, system, planetNumber, planetRow) {
@@ -242,13 +240,15 @@
     return planetRow.find('th:eq(7)').text().trim();
   }
 
-  function saveScannerData(systemData) {
-    console.log('Saving scanner data');
+  function saveScannerData(systemData, skipSavingInStorage) {
     systemData.forEach(function (planet) {
       scannerData[planetID(planet.galaxy, planet.system, planet.planetNumber)] = planet;
     });
     setDataCounter(scannerData);
-    GM_setValue(SCANNER_DATA, scannerData);
+    if(!skipSavingInStorage) {
+      console.log('Saving scanner data');
+      GM_setValue(SCANNER_DATA, scannerData);
+    }
   }
 
   function setDataCounter(scannerData) {
