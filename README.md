@@ -18,7 +18,7 @@ Skrypt instalowany przez Tampermonkey/Greasemonkey.
  - [ ] Data zapisania danych o planecie
  - [ ] Kolorowanie daty aktualizacji w zależności od wieku
  - [ ] Wyświetlanie relatywnej daty (10 min ago, 1 day ago etc)
- - [ ] Licznik wpisów w bazie
+ - [x] Licznik wpisów w bazie
  - [ ] Statystyki
  - [ ] Przycisk refresh przy wpisach
  
