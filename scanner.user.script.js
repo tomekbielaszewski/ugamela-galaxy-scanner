@@ -243,10 +243,17 @@
   }
 
   function saveScannerData(systemData) {
+    console.log('Saving scanner data');
     systemData.forEach(function (planet) {
       scannerData[planetID(planet.galaxy, planet.system, planet.planetNumber)] = planet;
     });
+    setDataCounter(scannerData);
     GM_setValue(SCANNER_DATA, scannerData);
+  }
+
+  function setDataCounter(scannerData) {
+    let count = Object.entries(scannerData).length;
+    $('#GS_count_planets_in_DB').text(`Planets in DB: ${count}`);
   }
 
   function planetID(galaxy, system, planet) {
