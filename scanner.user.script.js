@@ -33,6 +33,7 @@
   loadUI();
   attachAjaxListener();
   attachControls();
+  setDataCounter(scannerData);
 
   function loadUI() {
     $('#gameContent > center > table').append($(GM_getResourceText(SCANNER_UI)))
