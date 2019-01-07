@@ -6,6 +6,9 @@
 // @author       tomekbielaszewski
 // @match        https://www.ugamela.pl/s1/galaxy.php*
 // @resource     scanner-ui https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.html
+// @updateURL    https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.user.script.js
+// @installURL   https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.user.script.js
+// @downloadURL  https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.user.script.js
 // @grant        GM_getResourceText
 // @grant        GM_getValue
 // @grant        GM_setValue
@@ -131,7 +134,7 @@
 
     let topRank = parseInt($('#GS_ranking').val());
     if (topRank < 1000) {
-      result = result && (data.playerRank <= topRank && data.playerRank > topRank-100);
+      result = result && (data.playerRank <= topRank && data.playerRank > topRank - 100);
     }
 
     if (!(playerSearch || allianceSearch || longinactive || inactive || active || debrisHigh || debrisMed || debrisLow || hasMoon || topRank < 1000)) {
