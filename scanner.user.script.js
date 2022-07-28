@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ugamela Galaxy Scanner
 // @namespace    Ugamela
-// @version      0.1
+// @version      0.2
 // @description  Saves galaxy state while browsing
 // @author       tomekbielaszewski
 // @match        https://www.ugamela.pl/s1/galaxy.php*
