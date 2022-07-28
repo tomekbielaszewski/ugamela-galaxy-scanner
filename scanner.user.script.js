@@ -39,7 +39,7 @@
 
   function loadUI() {
     $('#gameContent > center > table').append($(GM_getResourceText(SCANNER_UI)));
-    $('<style>').load($(GM_getResourceText(AJAX_INFO_BOX_STYLE))).appendTo("head");
+    $('head').append('<style>' + GM_getResourceText(AJAX_INFO_BOX_STYLE) + '</style>');
     $('#ajaxInfoBox').addClass('ajax-info-box-style');
   }
 
