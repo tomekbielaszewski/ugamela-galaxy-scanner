@@ -6,6 +6,7 @@
 // @author       tomekbielaszewski
 // @match        https://www.ugamela.pl/s1/galaxy.php*
 // @resource     scanner-ui https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.html
+// @resource     ajax-info-box-style https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/ajax-info-box-style.css
 // @updateURL    https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.user.script.js
 // @installURL   https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.user.script.js
 // @downloadURL  https://raw.githubusercontent.com/tomekbielaszewski/ugamela-galaxy-scanner/master/scanner.user.script.js
@@ -17,6 +18,7 @@
 (function () {
   'use strict';
   const SCANNER_UI = 'scanner-ui';
+  const AJAX_INFO_BOX_STYLE = 'ajax-info-box-style';
   const SCANNER_DATA = 'scannerData';
 
   const PLAYER_ACTIVE = 'active';
@@ -36,7 +38,9 @@
   setDataCounter(scannerData);
 
   function loadUI() {
-    $('#gameContent > center > table').append($(GM_getResourceText(SCANNER_UI)))
+    $('#gameContent > center > table').append($(GM_getResourceText(SCANNER_UI)));
+    $('<style>').load($(GM_getResourceText(AJAX_INFO_BOX_STYLE))).appendTo("head");
+    $('#ajaxInfoBox').addClass('ajax-info-box-style');
   }
 
   function isAutoScanSelected() {
@@ -88,8 +92,8 @@
 
   function refreshResult() {
     let filteredScanner = Object.entries(scannerData)
-      .map(entry => entry[1])
-      .filter(scannerFilter);
+    .map(entry => entry[1])
+    .filter(scannerFilter);
     refreshUI(filteredScanner);
   }
 
@@ -111,9 +115,9 @@
     let active = $('#GS_active_filter').is(":checked");
     if (longinactive || inactive || active) {
       result = result && (
-        longinactive && (data.playerActivity === PLAYER_LONGINACTIVE) ||
-        inactive && (data.playerActivity === PLAYER_INACTIVE) ||
-        active && (data.playerActivity === PLAYER_ACTIVE)
+          longinactive && (data.playerActivity === PLAYER_LONGINACTIVE) ||
+          inactive && (data.playerActivity === PLAYER_INACTIVE) ||
+          active && (data.playerActivity === PLAYER_ACTIVE)
       );
     }
 
@@ -122,9 +126,9 @@
     let debrisLow = $('#GS_debris_low_filter').is(":checked");
     if (debrisHigh || debrisMed || debrisLow) {
       result = result && (data.debrisFieldType !== DEBRIS_NONE) && (
-        debrisHigh && (data.debrisFieldType === DEBRIS_RED) ||
-        debrisMed && (data.debrisFieldType === DEBRIS_ORANGE) ||
-        debrisLow && (data.debrisFieldType === DEBRIS_GREEN)
+          debrisHigh && (data.debrisFieldType === DEBRIS_RED) ||
+          debrisMed && (data.debrisFieldType === DEBRIS_ORANGE) ||
+          debrisLow && (data.debrisFieldType === DEBRIS_GREEN)
       );
     }
 
@@ -151,7 +155,7 @@
       let uiResultRow = $(data.rawHTML);
       uiResultRow.find('th:eq(0) > a').text(planetID(data.galaxy, data.system, data.planetNumber));
       uiResultRow.find('th:eq(0) > a')
-        .attr("href", `https://www.ugamela.pl/s1/galaxy.php?mode=3&galaxy=${data.galaxy}&system=${data.system}`)
+      .attr("href", `https://www.ugamela.pl/s1/galaxy.php?mode=3&galaxy=${data.galaxy}&system=${data.system}`)
       $('#galRows_scanner').append(uiResultRow);
     })
   }
